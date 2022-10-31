@@ -5,10 +5,10 @@ import MyList from './components/Lists/MyList'
 
 function App() {
   const [values, setValues] = useState([])
-  const handleSubmit = (values) => {
+  const handleSubmit = (newValues) => {
     setValues([
       ...values,
-      values
+      newValues
     ])
   }
 
