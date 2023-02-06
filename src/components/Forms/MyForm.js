@@ -9,6 +9,12 @@ const MyForm = ({ onSubmit }) => {
     resetForm()
   }
 
+  const getValidationSchema = () => (Yup.object({
+      name: Yup.string().required('Required'),
+      lastname: Yup.string().required('Required'),
+    })
+  )
+
   return (
     <Formik
       initialValues={{
@@ -16,10 +22,7 @@ const MyForm = ({ onSubmit }) => {
         lastname: '',
       }}
       onSubmit={handleSubmit}
-      validationSchema={Yup.object({
-        name: Yup.string().required('Required'),
-        lastname: Yup.string().required('Required'),
-      })}
+      validationSchema={() => getValidationSchema()}
     >
       <Form>
         <Input name="name" label="Name" />
