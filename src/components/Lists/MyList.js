@@ -1,26 +1,26 @@
+import { isEqual } from 'lodash'
 import { memo } from 'react'
 
-const Li = memo(({ fullname }) => {
-  console.log(`rendering ${fullname}`)
+const Li = memo(({ children }) => {
+  console.log(`rendering ${children}`)
   return (
     <li>
-      {fullname}
+      {children}
     </li>
   )
-})
+}, isEqual)
 
 const MyList = ({ data }) => {
-  console.log('rendering list')
+  console.log('rendering list (chilren)')
   return (
     <ul>
       {data.map(x =>
-        <Li
-          key={x.name + x.lastname}
-          fullname={`${x.name} ${x.lastname}`}
-        />
+        <Li key={x.name + x.lastname}>
+          {`${x.name} ${x.lastname}`}
+        </Li>
       )}
     </ul>
   )
 }
 
-export default MyList
+export default memo(MyList)
