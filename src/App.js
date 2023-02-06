@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Title from './components/Title'
 import MyForm from './components/Forms/MyForm'
 import MyList from './components/Lists/MyList'
 
 function App() {
   const [values, setValues] = useState([])
-  const handleSubmit = (newValues) => {
-    setValues([
-      ...values,
+  const handleSubmit = useCallback((newValues) => {
+    setValues(data => ([
+      ...data,
       newValues
-    ])
-  }
+    ]))
+  }, [])
 
   return (
     <div>
